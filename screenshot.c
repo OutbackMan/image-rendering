@@ -8,6 +8,7 @@ void list_open_windows(Display *display_connection, Window window_to_search)
 	Window parent_window;
 	Window *child_windows;
 	unsigned int child_window_count;
+	// use basic regex parser to handle window text name
 
 	if (XQueryTree(display_connection, window_to_search, &root_window, &parent_window, &child_windows, &child_window_count)) {
 			
@@ -33,6 +34,27 @@ void list_open_windows(Display *display_connection, Window window_to_search)
 		printf("FAILED TO RETRIEVE LIST\n");
 	}
 
+}
+
+// incorporate OCR
+void run_bot()
+{
+	teleport_to_start_location();
+	reset_view();
+	// factor in lag with sleep()
+	travel_to_end_location(); // This consists of a series of mouse clicks at particular locations with appropriate pauses for travel duration
+	while (last_inventory_space_is_empty()) { // This will check whether the item's colour is found in the last position of inventory
+		if (find_pixels(&bubbles_coordinates, x1, x2, y1, y2, bubble_hex_colour) == FOUND) { // x1-y2 are coordinates of area to search for pixels
+			click(bubbles_coordinates.x, bubbles_coordinates.y)
+			sleep(fishing_duration);
+		}
+	}
+	// Work through each piece of functionality in a sequential order, commenting previous functionality.
+	teleport_to_start_location();
+	move_to_oven();
+	cook_at_oven();
+	sell_to_cook();
+	
 }
 
 int main(void)
