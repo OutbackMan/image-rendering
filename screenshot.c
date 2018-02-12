@@ -45,6 +45,8 @@ void run_bot()
 	travel_to_end_location(); // This consists of a series of mouse clicks at particular locations with appropriate pauses for travel duration
 	while (last_inventory_space_is_empty()) { // This will check whether the item's colour is found in the last position of inventory
 		if (find_pixels(&bubbles_coordinates, x1, x2, y1, y2, bubble_hex_colour) == FOUND) { // x1-y2 are coordinates of area to search for pixels
+			// Determine pixels to look for by clipping a section of screen
+			// Provide a level of deviation, i.e. lenency with pixel accuracy
 			click(bubbles_coordinates.x, bubbles_coordinates.y)
 			sleep(fishing_duration);
 		}
