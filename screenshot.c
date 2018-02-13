@@ -57,7 +57,10 @@ void run_bot()
 	cook_at_oven();
 	sell_to_cook();
 	
-}
+}  
+
+// x11/cursorfont
+// XCreateImage, XSetWindowBackgroundPixmap
 
 int main(void)
 {
